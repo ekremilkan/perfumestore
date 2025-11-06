@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "homeTitle": "PerfumeStore – Artisanal Fragrance House",
+    "homeDescription": "Discover signature scents for every mood with PerfumeStore's curated artisan collection.",
+    "productTitle": "{{name}} – PerfumeStore",
+    "productDescription": "Explore the fragrant story behind {{name}} from PerfumeStore.",
+    "cartTitle": "Your Cart – PerfumeStore",
+    "cartDescription": "Review your curated perfume selection before checkout.",
+    "loginTitle": "Access Your PerfumeStore Account",
+    "adminTitle": "PerfumeStore Admin Console",
+    "adminDescription": "Manage products, orders, and tenant experiences in one place."
+  },
+  "navigation": {
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "collection": "Collection",
+    "cart": "Cart",
+    "cartCount": "{{count}} items",
+    "admin": "Admin",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "language": "Language",
+    "menu": "Menu",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "search": "Search",
+    "searchPlaceholder": "Search",
+    "badge": { "new": "New" },
+    "primary": {
+      "women": "Women",
+      "men": "Men",
+      "exclusiveCollection": "Exclusive Collection",
+      "giftSets": "Gift Sets"
+    },
+    "contact": {
+      "email": "info@perfume.example",
+      "phone": "955123456789"
+    },
+    "secondary": {
+      "bestSellers": "Best Sellers",
+      "latest": "Latest",
+      "giftSets": "Gift Sets",
+      "promises": "Incense & Promises",
+      "everyMoment": "A scent for every moment",
+      "orientalNotes": "Oriental notes"
+    }
+  },
+  "hero": {
+    "ribbon": "Maison de Parfum",
+    "heading": "Experience the Art of Scent",
+    "subheading": "Hand-blended fragrances inspired by timeless perfumery and modern elegance.",
+    "primaryCta": "Explore Collection",
+    "secondaryCta": "Discover Our Story",
+    "benefits": {
+      "composition": "Hand-milled essences refined in Paris",
+      "notes": "Layered top, heart, and base narratives",
+      "sillage": "Memorable sillage that lingers softly",
+      "refillable": "Refillable crystal flacons"
+    },
+    "previewLabel": "Preview the notes",
+    "previewTitle": "Olfactive Architecture",
+    "previewDescription": "Each blend is composed with slow-distilled botanicals and rare resins sourced sustainably.",
+    "stats": {
+      "top": "Top",
+      "topNotes": "Sparkling bergamot · Pink pepper",
+      "heart": "Heart",
+      "heartNotes": "Damask rose · Cashmere woods",
+      "base": "Base",
+      "baseNotes": "Ambergris accord · Vetiver",
+      "longLasting": "Wear Time",
+      "hours": "10h aura"
+    }
+  },
+  "products": {
+    "sectionLabel": "Signature Edit",
+    "sectionTitle": "Featured Scents",
+    "priceLabel": "Price",
+    "viewDetails": "View Details",
+    "addToCart": "Add to Cart",
+    "adding": "Adding…",
+    "added": "Added",
+    "outOfStock": "Out of Stock",
+    "empty": "No products are available for this tenant yet.",
+    "newArrival": "New Arrival",
+    "overlayDescription": "Discover the layered accords and artisanal craftsmanship behind this scent.",
+    "uncategorized": "Signature Blend"
+  },
+  "product": {
+    "backLink": "Back to collection",
+    "notesHeading": "Fragrance Notes",
+    "notesDescription": "Explore the aromatic architecture and curated accords that define this extrait.",
+    "notesFallback": "Curated by our perfumers",
+    "topNotes": "Top Notes",
+    "heartNotes": "Heart Notes",
+    "baseNotes": "Base Notes",
+    "volume": "Bottle Size",
+    "volumeDefault": "50 ml extrait",
+    "longevity": "Longevity",
+    "longevityHours": "Up to {{hours}} hours",
+    "longevityDefault": "Long-lasting trail",
+    "category": "Collection",
+    "tenant": "Signature House",
+    "addToCart": "Add to Cart",
+    "descriptionHeading": "Why you will love it",
+    "relatedHeading": "Pairs beautifully with",
+    "relatedDescription": "Layer with complementary accords to tailor your aura.",
+    "backToCollection": "Return to collection",
+    "ingredientsHeading": "Composition",
+    "accordsHeading": "Accords",
+    "deliveryCopy": "Complimentary worldwide delivery on orders above €120.",
+    "outOfStockMessage": "Join the waitlist — this blend will return soon.",
+    "stock": {
+      "limited": "Limited • {{count}} left",
+      "available": "In stock"
+    }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty. Explore our collection to find your next signature scent.",
+    "continue": "Continue Shopping",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "checkout": "Secure Checkout",
+    "items": "Items",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "update": "Update Quantity",
+    "shippingNotice": "Complimentary shipping on orders above €120."
+  },
+  "admin": {
+    "title": "Admin Console",
+    "subtitle": "Manage products, orders, and tenant experiences in one place.",
+    "nav": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "orders": "Orders"
+    },
+    "dashboard": {
+      "metrics": {
+        "revenue": "Revenue",
+        "orders": "Orders",
+        "customers": "Customers",
+        "inventory": "SKU Count"
+      }
+    },
+    "products": {
+      "title": "Catalog",
+      "empty": "No products are available yet.",
+      "create": "Create product",
+      "save": "Save product",
+      "update": "Update product",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "statusLabel": "Featured",
+      "confirmDelete": "Are you sure you want to delete this product?",
+      "form": {
+        "name": "Name",
+        "slug": "Slug",
+        "description": "Description",
+        "price": "Price",
+        "stock": "Stock",
+        "category": "Category",
+        "image": "Image URL",
+        "isFeatured": "Mark as featured",
+        "submitCreate": "Create product",
+        "submitUpdate": "Save changes"
+      },
+      "table": {
+        "name": "Name",
+        "price": "Price",
+        "stock": "Stock",
+        "updated": "Updated",
+        "actions": "Actions"
+      },
+      "feedback": {
+        "created": "Product created",
+        "updated": "Product updated",
+        "deleted": "Product removed"
+      }
+    },
+    "orders": {
+      "title": "Orders",
+      "empty": "No orders yet.",
+      "table": {
+        "order": "Order",
+        "customer": "Customer",
+        "status": "Status",
+        "total": "Total",
+        "created": "Created",
+        "actions": "Actions"
+      },
+      "status": {
+        "PENDING": "Pending",
+        "PROCESSING": "Processing",
+        "COMPLETED": "Completed",
+        "CANCELLED": "Cancelled"
+      },
+      "actions": {
+        "view": "View",
+        "markProcessing": "Mark processing",
+        "markCompleted": "Mark completed",
+        "cancel": "Cancel order"
+      },
+      "feedback": {
+        "statusUpdated": "Order status updated"
+      }
+    },
+    "notifications": {
+      "error": "Something went wrong. Try again."
+    }
+  },
+  "footer": {
+    "newsletterHeading": "Stay in the Sillage",
+    "newsletterDescription": "Receive early access to limited drops and curated scent pairings.",
+    "newsletterPlaceholder": "Enter your email",
+    "newsletterCta": "Join the Atelier",
+    "copyright": "All rights reserved.",
+    "crafted": "Crafted for fragrance connoisseurs.",
+    "contact": {
+      "email": "hello@perfumestore.com",
+      "phone": "+1 (555) 123-4567"
+    }
+  },
+  "auth": {
+    "title": "Sign in to PerfumeStore",
+    "subtitle": "Use a one-time code or Google to continue.",
+    "emailLabel": "Email address",
+    "sendOtp": "Send code",
+    "otpLabel": "One-time code",
+    "otpPlaceholder": "123456",
+    "verifyOtp": "Verify code",
+    "google": "Continue with Google",
+    "success": "Check your inbox for the verification code.",
+    "error": "We could not complete your request. Please try again."
+  },
+  "filters": {
+    "categoryLabel": "Select category",
+    "categoryAll": "All categories",
+    "priceTitle": "Price",
+    "priceLabel": "Max {{value}}",
+    "featuredOnly": "Featured only",
+    "clear": "Reset filters",
+    "countLabel": "Showing {{count}} fragrances",
+    "empty": "No fragrances match your filters yet."
+  },
+  "pwa": {
+    "installPrompt": "Install PerfumeStore app?",
+    "offlineReady": "Content is cached and available offline.",
+    "updateAvailable": "A new version is available.",
+    "refresh": "Refresh",
+    "close": "Close"
+  },
+  "notifications": {
+    "cartUpdated": "Cart updated",
+    "cartError": "We couldn’t update your cart. Please try again."
+  }
+}

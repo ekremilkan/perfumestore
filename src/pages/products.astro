@@ -1,0 +1,143 @@
+---
+import ProductCard from '../components/storefront/ProductCard.astro';
+import { ProductFilters } from '../components/storefront/ProductFilters';
+import Layout from '../layouts/Layout.astro';
+import { createTranslator } from '../lib/i18n';
+import { listProducts } from '../lib/services/products';
+
+export const prerender = false;
+
+const locale = (Astro.locals as any).locale ?? 'en';
+const t = createTranslator(locale);
+const allProducts = await listProducts();
+
+// Get URL parameters for filters
+const url = new URL(Astro.request.url);
+const category = url.searchParams.get('category') || '';
+const priceRange = url.searchParams.get('priceRange') || '';
+const featuredOnly = url.searchParams.get('featuredOnly') === 'true';
+const notes = url.searchParams.get('notes') || '';
+const season = url.searchParams.get('season') || '';
+
+// Filter products
+let products = allProducts.filter(product => {
+  if (category && product.category !== category) return false;
+  if (featuredOnly && !product.isFeatured) return false;
+  if (priceRange) {
+    const price = Number(product.price ?? 0);
+    switch (priceRange) {
+      case '0-50': if (price >= 50) return false; break;
+      case '50-100': if (price < 50 || price >= 100) return false; break;
+      case '100-200': if (price < 100 || price >= 200) return false; break;
+      case '200+': if (price < 200) return false; break;
+    }
+  }
+  if (notes) {
+    const productNotes = (product.attributes as any)?.notes || [];
+    if (!productNotes.includes(notes)) return false;
+  }
+  if (season) {
+    const productSeasons = (product.attributes as any)?.seasons || [];
+    if (!productSeasons.includes(season)) return false;
+  }
+  return true;
+});
+
+// Get unique categories, notes, and seasons
+const categories = [...new Set(allProducts.map(p => p.category).filter(Boolean))].sort() as string[];
+const notesList = [...new Set(allProducts.flatMap(p => (p.attributes as any)?.notes || []).filter(Boolean))].sort() as string[];
+const seasonsList = [...new Set(allProducts.flatMap(p => (p.attributes as any)?.seasons || []).filter(Boolean))].sort() as string[];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t("navigation.collection"),
+  description: t("hero.subheading"),
+  url: new URL(Astro.url.pathname, Astro.url.origin).toString(),
+};
+---
+
+<Layout
+  title={`${(t("navigation.collection") as string)} – PerfumeStore`}
+  description={t("hero.subheading") as string}
+  structuredData={structuredData}
+>
+  <section class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-4 font-serif">
+          {t("navigation.collection")}
+        </h1>
+        <p class="text-xl text-[#2B2B2B]/70 max-w-2xl mx-auto">
+          {t("hero.subheading")}
+        </p>
+      </div>
+
+       <!-- Mobile Filter Button -->
+       <div class="flex justify-between items-center mb-6 lg:hidden">
+         <h2 class="text-lg font-semibold text-[#2B2B2B]">
+           {products.length} {(t("navigation.collection") as string).toLowerCase()}
+         </h2>
+         <button
+           type="button"
+           class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[color-mix(in srgb,var(--color-primary) 15%,transparent 85%)] rounded-xl text-sm font-medium text-[var(--color-secondary)] hover:bg-gray-50 transition"
+           data-mobile-filters-toggle
+         >
+           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+             <path d="M3 6h18M6 12h12M9 18h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+           </svg>
+           Filters
+         </button>
+       </div>
+
+       <div class="grid lg:grid-cols-4 gap-8">
+         <!-- Filters Sidebar -->
+         <div class="lg:col-span-1 hidden lg:block">
+           <div class="sticky top-6">
+              <ProductFilters
+                client:idle
+                initialFilters={{ category, priceRange, featuredOnly, notes, season }}
+                categories={categories}
+                notes={notesList}
+                seasons={seasonsList}
+                totalCount={products.length}
+                texts={{
+                  categoryLabel: "Category",
+                  categoryAll: "All Categories",
+                  priceTitle: "Price Range",
+                  priceLabel: "Price",
+                  featuredOnly: "Featured Only",
+                  notesLabel: "Fragrance Notes",
+                  notesAll: "All Notes",
+                  seasonLabel: "Season",
+                  seasonAll: "All Seasons",
+                  clear: "Clear Filters",
+                  countLabel: "Showing {{count}} products"
+                }}
+                onFiltersChange={(filters) => {
+                  // This will be handled by the component updating the URL
+                  // and triggering a page reload or client-side filtering
+                  console.log('Filters changed:', filters);
+                }}
+              />
+           </div>
+         </div>
+
+         <!-- Products Grid -->
+         <div class="lg:col-span-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <ProductCard product={product} t={t} locale={locale} />
+            ))}
+          </div>
+
+          {products.length === 0 && (
+            <div class="text-center py-20">
+              <p class="text-lg text-[#2B2B2B]/70">No products found matching your filters.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

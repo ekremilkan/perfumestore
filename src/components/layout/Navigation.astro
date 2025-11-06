@@ -1,0 +1,314 @@
+---
+import type { AuthUser } from "../../lib/auth";
+import type { Translator } from "../../lib/i18n";
+
+const { t, cartQuantity, locale, user, businessName, locales, invert } =
+  Astro.props as {
+    t: Translator;
+    cartQuantity: number;
+    locale: string;
+    user: AuthUser | null;
+    businessName: string;
+    locales: string[];
+    invert?: boolean;
+  };
+
+const cartLabel = t("navigation.cart");
+const cartDescription = t("navigation.cartCount", { count: cartQuantity });
+const isAdmin = user?.role === "ADMIN";
+const loginHref = `/auth/login?lang=${locale}`;
+const logoutHref = `/auth/logout?lang=${locale}&redirectTo=/`;
+const mobileMenuId = "mobile-navigation";
+const menuLabel = t("navigation.menu");
+const openMenuLabel = t("navigation.openMenu");
+const closeMenuLabel = t("navigation.closeMenu");
+---
+
+<nav class="w-full pb-2">
+  <div class="flex items-center justify-between gap-4 py-1">
+    <!-- Logo on left -->
+    <a
+      href="/"
+      class="font-heading text-xl font-semibold tracking-wide transition text-white hover:text-[var(--color-primary)]"
+      >{businessName}</a
+    >
+
+    <!-- Navigation links in center -->
+    <div class="hidden items-center gap-6 md:flex">
+      <a
+        href="/#women"
+        class="text-sm text-white transition hover:text-[var(--color-primary)]"
+        >{t("navigation.primary.women")}</a
+      >
+      <a
+        href="/#men"
+        class="text-sm text-white transition hover:text-[var(--color-primary)]"
+        >{t("navigation.primary.men")}</a
+      >
+      <a
+        href="/#exclusive"
+        class="text-sm text-white transition hover:text-[var(--color-primary)]"
+        >{t("navigation.primary.exclusiveCollection")}</a
+      >
+      <a
+        href="/#gifts"
+        class="text-sm text-white transition hover:text-[var(--color-primary)]"
+        >{t("navigation.primary.giftSets")}</a
+      >
+    </div>
+
+    <!-- Right side items -->
+    <div class="hidden items-center gap-4 md:flex">
+      <a
+        href="/products"
+        class="inline-flex h-8 w-8 items-center justify-center rounded-full text-white hover:bg-black/20 transition"
+        aria-label={t("navigation.search") as string}
+      >
+        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+          ><circle
+            cx="11"
+            cy="11"
+            r="7"
+            stroke="currentColor"
+            stroke-width="1.5"></circle><path
+            d="M20 20l-4.2-4.2"
+            stroke="currentColor"
+            stroke-width="1.5"></path></svg
+        >
+      </a>
+      <a
+        href="/cart"
+        class="relative inline-flex h-8 w-8 items-center justify-center rounded-full text-white hover:bg-black/20 transition"
+        aria-label={`${cartLabel} – ${cartDescription}`}
+      >
+        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+          ><path
+            d="M7 7h10l-1 12H8L7 7z"
+            stroke="currentColor"
+            stroke-width="1.5"></path><path
+            d="M9 7a3 3 0 116 0"
+            stroke="currentColor"
+            stroke-width="1.5"></path></svg
+        >
+        {
+          cartQuantity > 0 && (
+            <span class="absolute -right-0.5 -top-0.5 inline-flex h-3.5 min-w-[0.875rem] items-center justify-center rounded-full bg-[var(--color-accent)] px-0.5 text-[10px] font-bold text-white">
+              {cartQuantity}
+            </span>
+          )
+        }
+      </a>
+      <form method="get" action="/" class="relative">
+        <label class="sr-only" for="language-select"
+          >{t("navigation.language")}</label
+        >
+        <select
+          id="language-select"
+          name="lang"
+          class="rounded-full border px-3 py-1.5 text-xs shadow-sm backdrop-blur-sm focus:outline-none border-[color-mix(in srgb,var(--color-primary) 20%,transparent 80%)] bg-white/80 text-black focus:border-[var(--color-primary)]"
+          value={locale}
+          onchange="this.form.submit()"
+        >
+          {
+            locales.map((code) => (
+              <option value={code}>{code.toUpperCase()}</option>
+            ))
+          }
+        </select>
+      </form>
+    </div>
+
+    <!-- Mobile menu button -->
+    <div class="flex items-center gap-4 md:hidden">
+      <a
+        href="/products"
+        class="inline-flex items-center justify-center text-white transition hover:text-[var(--color-primary)] focus:outline-none"
+        aria-label={t("navigation.search") as string}
+      >
+        <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+          ><circle
+            cx="11"
+            cy="11"
+            r="7"
+            stroke="currentColor"
+            stroke-width="1.5"></circle><path
+            d="M20 20l-4.2-4.2"
+            stroke="currentColor"
+            stroke-width="1.5"></path></svg
+        >
+      </a>
+      <a
+        href="/cart"
+        class="relative inline-flex items-center justify-center text-white transition hover:text-[var(--color-primary)] focus:outline-none"
+        aria-label={`${cartLabel} – ${cartDescription}`}
+      >
+        <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+          ><path
+            d="M7 7h10l-1 12H8L7 7z"
+            stroke="currentColor"
+            stroke-width="1.5"></path><path
+            d="M9 7a3 3 0 116 0"
+            stroke="currentColor"
+            stroke-width="1.5"></path></svg
+        >
+        {
+          cartQuantity > 0 && (
+            <span class="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-[var(--color-accent)] px-1 text-[10px] font-bold text-white">
+              {cartQuantity}
+            </span>
+          )
+        }
+      </a>
+      <button
+        type="button"
+        class="inline-flex items-center justify-center text-white transition hover:text-[var(--color-primary)] focus:outline-none"
+        aria-expanded="false"
+        aria-controls={mobileMenuId}
+        data-nav-toggle
+      >
+        <span class="sr-only">{openMenuLabel}</span>
+        <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none"
+          ><path
+            d="M4 7h16M4 12h16M4 17h16"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"></path></svg
+        >
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div
+  id={mobileMenuId}
+  data-nav-menu
+  class="hidden w-full rounded-3xl border border-[color-mix(in srgb,var(--color-primary) 22%,transparent 78%)] bg-white/90 p-6 shadow-xl backdrop-blur-xl md:hidden"
+  aria-label={menuLabel as string}
+>
+  <div class="flex flex-col gap-5">
+    <div class="flex items-center justify-between">
+      <span class="font-heading text-lg text-black">{menuLabel}</span>
+      <button
+        type="button"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-[var(--color-primary)] text-white transition hover:bg-[color-mix(in srgb,var(--color-primary) 85%,white 15%)] focus:outline-none"
+        data-nav-close
+      >
+        <span class="sr-only">{closeMenuLabel}</span>
+        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M6 6l12 12M18 6l-12 12"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+    <a
+      href="/products"
+      class="text-base font-medium text-black transition hover:text-[var(--color-primary)]"
+    >
+      {t("navigation.collection")}
+    </a>
+    <a
+      href="/#women"
+      class="text-sm font-medium text-black/70 transition hover:text-[var(--color-primary)] ml-4"
+    >
+      {t("navigation.primary.women")}
+    </a>
+    <a
+      href="/#men"
+      class="text-sm font-medium text-black/70 transition hover:text-[var(--color-primary)] ml-4"
+    >
+      {t("navigation.primary.men")}
+    </a>
+    <a
+      href="/#exclusive"
+      class="text-sm font-medium text-black/70 transition hover:text-[var(--color-primary)] ml-4"
+    >
+      {t("navigation.primary.exclusiveCollection")}
+    </a>
+    <a
+      href="/#gifts"
+      class="text-sm font-medium text-black/70 transition hover:text-[var(--color-primary)] ml-4"
+    >
+      {t("navigation.primary.giftSets")}
+    </a>
+    <a
+      href="/cart"
+      class="text-base font-medium text-black transition hover:text-[var(--color-primary)] mt-2"
+    >
+      {cartLabel}
+    </a>
+    {
+      isAdmin && (
+        <a
+          href="/admin"
+          class="text-base font-medium text-[var(--color-secondary)] transition hover:text-[var(--color-primary)]"
+        >
+          {t("navigation.admin")}
+        </a>
+      )
+    }
+    <div
+      class="border-t border-[color-mix(in srgb,var(--color-primary) 20%,transparent 80%)] pt-4"
+    >
+      <form method="get" action="/" class="space-y-2">
+        <label
+          class="block text-xs uppercase tracking-[0.3em] text-[color-mix(in srgb,var(--color-secondary) 65%,white 35%)]"
+          for="mobile-language-select"
+        >
+          {t("navigation.language")}
+        </label>
+        <select
+          id="mobile-language-select"
+          name="lang"
+          class="w-full rounded-full border border-[color-mix(in srgb,var(--color-primary) 20%,transparent 80%)] bg-white px-4 py-2 text-sm text-[var(--color-secondary)] shadow-sm focus:border-[var(--color-primary)] focus:outline-none"
+          value={locale}
+          onchange="this.form.submit()"
+        >
+          {
+            locales.map((code) => (
+              <option value={code}>{code.toUpperCase()}</option>
+            ))
+          }
+        </select>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const navMenu = document.querySelector("[data-nav-menu]");
+  const closeButton = document.querySelector("[data-nav-close]");
+
+  function closeMenu() {
+    if (!navMenu || !navToggle) return;
+    navMenu.classList.add("hidden");
+    navToggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    if (!navMenu || !navToggle) return;
+    navMenu.classList.remove("hidden");
+    navToggle.setAttribute("aria-expanded", "true");
+  }
+
+  navToggle?.addEventListener("click", () => {
+    if (!navMenu) return;
+    const isHidden = navMenu.classList.contains("hidden");
+    if (isHidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  closeButton?.addEventListener("click", closeMenu);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+</script>

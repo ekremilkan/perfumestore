@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { createTranslator } from "../../lib/i18n";
+
+const locale = Astro.locals.locale ?? "en";
+const t = createTranslator(locale);
+const redirectTo = Astro.url.searchParams.get("redirectTo") ?? "/";
+---
+
+<Layout title={t("meta.loginTitle")} description={t("meta.loginTitle")}>
+  <section
+    class="flex flex-col items-center justify-center gap-4 py-20 text-center"
+    data-redirect-to={redirectTo}
+  >
+    <p
+      class="text-sm text-[color-mix(in srgb,var(--color-secondary) 70%,white 30%)]"
+    >
+      {t("auth.subtitle")}
+    </p>
+    <script is:inline>
+      const section = document.querySelector('section[data-redirect-to]');
+      const redirectTarget = section?.dataset.redirectTo || '/';
+      fetch("/api/auth/sign-out", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+      })
+        .catch(() => {})
+        .finally(() => {
+          window.location.href = redirectTarget;
+        });
+    </script>
+  </section>
+</Layout>

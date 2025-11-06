@@ -1,0 +1,344 @@
+---
+import { ProductActions } from "../../components/storefront/ProductActions";
+import ProductCard from "../../components/storefront/ProductCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import { createTranslator } from "../../lib/i18n";
+import { getBusinessConfig, getTenantId } from "../../lib/business";
+import {
+  getProductBySlug,
+  getRelatedProducts,
+} from "../../lib/services/products";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/");
+}
+
+const locale = Astro.locals.locale ?? "en";
+const t = createTranslator(locale);
+const product = await getProductBySlug(slug);
+
+if (!product) {
+  return new Response(null, { status: 404 });
+}
+
+const related = await getRelatedProducts(product.id, 3);
+const price = Number(product.price ?? 0);
+const priceFormatter = new Intl.NumberFormat(locale, {
+  style: "currency",
+  currency: "EUR",
+});
+
+const tenantId = await getTenantId();
+const business = await getBusinessConfig();
+
+const title = t("meta.productTitle", { name: product.name });
+const description = product.description
+  ? product.description
+  : t("meta.productDescription", { name: product.name });
+
+type Attributes = Record<string, unknown>;
+const attributes = (product.attributes ?? {}) as Attributes;
+
+function toStringArray(value: unknown) {
+  if (!Array.isArray(value)) return null;
+  const items = value.filter(
+    (entry): entry is string => typeof entry === "string"
+  );
+  return items.length ? items : null;
+}
+
+const notesRaw =
+  typeof attributes.notes === "object" && attributes.notes !== null
+    ? (attributes.notes as Record<string, unknown>)
+    : null;
+
+const topNotes = toStringArray(notesRaw?.top) ?? [];
+const heartNotes = toStringArray(notesRaw?.heart) ?? [];
+const baseNotes = toStringArray(notesRaw?.base) ?? [];
+const accords = toStringArray(attributes.accords) ?? [];
+
+const longevityHours =
+  typeof attributes.longevityHours === "number"
+    ? attributes.longevityHours
+    : typeof attributes.longevity === "number"
+      ? attributes.longevity
+      : null;
+
+const bottleSize =
+  typeof attributes.volume === "string"
+    ? attributes.volume
+    : t("product.volumeDefault");
+
+const longevityCopy = longevityHours
+  ? t("product.longevityHours", { hours: longevityHours })
+  : t("product.longevityDefault");
+
+const stockCount = typeof product.stock === "number" ? product.stock : 0;
+const isOutOfStock = stockCount <= 0;
+const stockLabel = isOutOfStock
+  ? t("products.outOfStock")
+  : stockCount <= 5
+    ? t("product.stock.limited", { count: stockCount })
+    : t("product.stock.available");
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.name,
+  image: product.image ?? business.assets.fallbackHeroImage ?? undefined,
+  description,
+  sku: product.slug ?? undefined,
+  brand: {
+    "@type": "Brand",
+    name: business.name,
+  },
+  offers: {
+    "@type": "Offer",
+    url: new URL(Astro.url.pathname, Astro.url.origin).toString(),
+    price: Number(product.price ?? 0),
+    priceCurrency: "EUR",
+    availability: isOutOfStock
+      ? "https://schema.org/OutOfStock"
+      : "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+  },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  image={product.image ?? business.assets.fallbackHeroImage ?? null}
+  structuredData={structuredData}
+  ogType="product"
+>
+  <article class="space-y-16 py-12">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-secondary)] transition hover:text-[var(--color-primary)]"
+    >
+      <span aria-hidden="true">←</span>
+      {t("product.backLink")}
+    </a>
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_0.95fr]">
+      <div class="space-y-6 lg:space-y-8">
+        <div
+          class="surface-shimmer relative overflow-hidden rounded-[2.5rem] bg-[var(--color-surface)] shadow-2xl"
+        >
+          {
+            product.image ? (
+              <img
+                src={product.image}
+                alt={product.name}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="flex h-96 w-full items-center justify-center text-sm text-[color-mix(in srgb,var(--color-secondary) 70%,white 30%)]">
+                {t("product.descriptionHeading")}
+              </div>
+            )
+          }
+          <div
+            class="pointer-events-none absolute inset-x-6 top-6 flex items-center justify-between rounded-full bg-white/60 px-5 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-secondary)] backdrop-blur"
+          >
+            <span>{tenantId}</span>
+            {product.category && <span>{product.category}</span>}
+          </div>
+        </div>
+      </div>
+      <div class="space-y-10">
+        <header class="space-y-6">
+          <div
+            class="inline-flex items-center gap-3 rounded-full bg-[color-mix(in srgb,var(--color-primary) 18%,transparent 82%)] px-5 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-secondary)]"
+          >
+            <span>{t("product.tenant")}</span>
+            <span class="tracking-normal">{business.name}</span>
+          </div>
+          <div class="space-y-4">
+            <h1
+              class="font-heading text-4xl font-semibold text-[var(--color-secondary)] md:text-5xl"
+            >
+              {product.name}
+            </h1>
+            <p
+              class="text-base leading-relaxed text-[color-mix(in srgb,var(--color-secondary) 70%,white 30%)] md:text-lg"
+            >
+              {description}
+            </p>
+          </div>
+        </header>
+        <section class="space-y-8">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span
+                class="block text-xs uppercase tracking-[0.2em] text-[color-mix(in srgb,var(--color-secondary) 65%,white 35%)]"
+              >
+                {t("products.priceLabel")}
+              </span>
+              <p class="text-3xl font-semibold text-[var(--color-secondary)]">
+                {priceFormatter.format(price)}
+              </p>
+            </div>
+            <span
+              class="rounded-full border border-[color-mix(in srgb,var(--color-primary) 22%,transparent 78%)] bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-secondary)]"
+            >
+              {stockLabel}
+            </span>
+          </div>
+          <div class="flex flex-col gap-4 md:flex-row md:items-center">
+            <ProductActions
+              client:idle
+              productId={product.id}
+              isOutOfStock={isOutOfStock}
+              labels={{
+                idle: t("products.addToCart"),
+                loading: t("products.adding"),
+                success: t("products.added"),
+                error: t("notifications.cartError"),
+              }}
+              outOfStockMessage={t("product.outOfStockMessage")}
+            />
+          </div>
+          <p
+            class="text-xs uppercase tracking-[0.15em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]"
+          >
+            {t("product.deliveryCopy")}
+          </p>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <span
+                class="block text-xs uppercase tracking-[0.15em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]"
+              >
+                {t("product.volume")}
+              </span>
+              <p class="mt-2 text-sm text-[var(--color-secondary)]">
+                {bottleSize}
+              </p>
+            </div>
+            <div>
+              <span
+                class="block text-xs uppercase tracking-[0.15em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]"
+              >
+                {t("product.longevity")}
+              </span>
+              <p class="mt-2 text-sm text-[var(--color-secondary)]">
+                {longevityCopy}
+              </p>
+            </div>
+          </div>
+          <div
+            class="border-t border-[color-mix(in srgb,var(--color-primary) 15%,transparent 85%)] pt-8"
+          >
+            <div class="space-y-2">
+              <h2
+                class="font-heading text-2xl font-semibold text-[var(--color-secondary)]"
+              >
+                {t("product.notesHeading")}
+              </h2>
+              <p
+                class="text-sm leading-relaxed text-[color-mix(in srgb,var(--color-secondary) 70%,white 30%)]"
+              >
+                {t("product.notesDescription")}
+              </p>
+            </div>
+            <div class="grid gap-6 md:grid-cols-3 mt-6">
+              <div class="space-y-3">
+                <span
+                  class="text-xs uppercase tracking-[0.2em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]"
+                >
+                  {t("product.topNotes")}
+                </span>
+                <p class="text-sm text-[var(--color-secondary)]">
+                  {
+                    (topNotes.length
+                      ? topNotes
+                      : [t("product.notesFallback")]
+                    ).join(" • ")
+                  }
+                </p>
+              </div>
+              <div class="space-y-3">
+                <span
+                  class="text-xs uppercase tracking-[0.2em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]"
+                >
+                  {t("product.heartNotes")}
+                </span>
+                <p class="text-sm text-[var(--color-secondary)]">
+                  {
+                    (heartNotes.length
+                      ? heartNotes
+                      : [t("product.notesFallback")]
+                    ).join(" • ")
+                  }
+                </p>
+              </div>
+              <div class="space-y-3">
+                <span
+                  class="text-xs uppercase tracking-[0.2em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]"
+                >
+                  {t("product.baseNotes")}
+                </span>
+                <p class="text-sm text-[var(--color-secondary)]">
+                  {
+                    (baseNotes.length
+                      ? baseNotes
+                      : [t("product.notesFallback")]
+                    ).join(" • ")
+                  }
+                </p>
+              </div>
+            </div>
+            {
+              accords.length > 0 && (
+                <div class="space-y-3 mt-6">
+                  <span class="text-xs uppercase tracking-[0.2em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]">
+                    {t("product.accordsHeading")}
+                  </span>
+                  <div class="flex flex-wrap gap-2">
+                    {accords.map((accord) => (
+                      <span class="rounded-full border border-[color-mix(in srgb,var(--color-primary) 20%,transparent 80%)] bg-white/70 px-4 py-1 text-xs uppercase tracking-[0.15em] text-[var(--color-secondary)]">
+                        {accord}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="space-y-6">
+          <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 class="font-heading text-2xl font-semibold text-[var(--color-secondary)] md:text-3xl">
+                {t("product.relatedHeading")}
+              </h2>
+              <p class="text-sm text-[color-mix(in srgb,var(--color-secondary) 70%,white 30%)]">
+                {t("product.relatedDescription")}
+              </p>
+            </div>
+            <a
+              href="/#collection"
+              class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--color-secondary)] transition hover:text-[var(--color-primary)]"
+            >
+              <span aria-hidden="true">↺</span>
+              {t("product.backToCollection")}
+            </a>
+          </div>
+          <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((item) => (
+              <ProductCard product={item} t={t} locale={locale} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </article>
+</Layout>

@@ -1,0 +1,35 @@
+---
+import type { Translator } from '../../lib/i18n';
+
+const { t, businessName } = Astro.props as {
+  t: Translator;
+  businessName: string;
+};
+---
+
+<footer class="bg-[var(--color-secondary)] text-white py-12 mt-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-heading text-lg font-semibold mb-4">{businessName}</h3>
+        <p class="text-sm opacity-80">{t('footer.crafted')}</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">{t('navigation.collection')}</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="hover:text-[var(--color-primary)] transition">{t('navigation.home')}</a></li>
+          <li><a href="/#collection" class="hover:text-[var(--color-primary)] transition">{t('navigation.collection')}</a></li>
+          <li><a href="/cart" class="hover:text-[var(--color-primary)] transition">{t('navigation.cart')}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">{t('navigation.contact')}</h4>
+        <p class="text-sm opacity-80">{t('footer.contact.email')}</p>
+        <p class="text-sm opacity-80">{t('footer.contact.phone')}</p>
+      </div>
+    </div>
+    <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm opacity-80">
+      <p>© {new Date().getFullYear()} {businessName}. {t('footer.copyright')}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,84 @@
+---
+import AdminLayout from '../../components/admin/AdminLayout.astro';
+import { OrdersManager } from '../../components/admin/OrdersManager.tsx';
+import Layout from '../../layouts/Layout.astro';
+import { prisma } from '../../lib/prisma';
+import { createTranslator } from '../../lib/i18n';
+import { getTenantId } from '../../lib/business';
+
+const locale = Astro.locals.locale ?? 'en';
+const t = createTranslator(locale);
+const tenantId = await getTenantId();
+
+const orders = await prisma.order.findMany({
+  where: { tenant_id: tenantId },
+  orderBy: { createdAt: 'desc' },
+  include: {
+    items: {
+      include: {
+        product: {
+          select: {
+            name: true,
+            price: true
+          }
+        }
+      }
+    },
+    user: {
+      select: {
+        email: true,
+        name: true
+      }
+    }
+  }
+});
+
+const initialOrders = orders.map((order) => ({
+  id: order.id,
+  total: Number(order.total ?? 0),
+  status: order.status as 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'CANCELLED',
+  customer: order.user?.email ?? order.userId,
+  createdAt: order.createdAt.toISOString(),
+  items: order.items.map((item) => ({
+    productId: item.productId,
+    productName: item.product?.name ?? 'Product',
+    quantity: item.quantity,
+    subtotal: Number(item.subtotal ?? Number(item.unitPrice ?? 0) * item.quantity)
+  }))
+}));
+---
+
+<Layout title={t('meta.adminTitle')} description={t('meta.adminDescription')}>
+  <AdminLayout t={t} active="orders" user={Astro.locals.user ?? null}>
+    <OrdersManager
+      client:load
+      initialOrders={initialOrders}
+      locale={locale}
+      currency="EUR"
+      texts={{
+        empty: t('admin.orders.empty'),
+        error: t('admin.notifications.error'),
+        feedback: t('admin.orders.feedback.statusUpdated'),
+        table: {
+          order: t('admin.orders.table.order'),
+          customer: t('admin.orders.table.customer'),
+          status: t('admin.orders.table.status'),
+          total: t('admin.orders.table.total'),
+          created: t('admin.orders.table.created'),
+          actions: t('admin.orders.table.actions')
+        },
+        status: {
+          PENDING: t('admin.orders.status.PENDING'),
+          PROCESSING: t('admin.orders.status.PROCESSING'),
+          COMPLETED: t('admin.orders.status.COMPLETED'),
+          CANCELLED: t('admin.orders.status.CANCELLED')
+        },
+        actions: {
+          markProcessing: t('admin.orders.actions.markProcessing'),
+          markCompleted: t('admin.orders.actions.markCompleted'),
+          cancel: t('admin.orders.actions.cancel')
+        }
+      }}
+    />
+  </AdminLayout>
+</Layout>

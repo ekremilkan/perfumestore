@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "homeTitle": "PerfumeStore – El Yapımı Parfüm Evi",
+    "homeDescription": "PerfumeStore'un özenle seçilmiş koleksiyonuyla her ruh hâline uygun imza kokuları keşfet.",
+    "productTitle": "{{name}} – PerfumeStore",
+    "productDescription": "PerfumeStore'un {{name}} kokusunun hikâyesini keşfet.",
+    "cartTitle": "Sepetin – PerfumeStore",
+    "cartDescription": "Özenle seçilmiş kokularını ödeme öncesinde gözden geçir.",
+    "loginTitle": "PerfumeStore hesabına giriş yap",
+    "adminTitle": "PerfumeStore Yönetim Paneli",
+    "adminDescription": "Ürünleri, siparişleri ve kiracılara özel deneyimleri tek yerden yönet."
+  },
+  "navigation": {
+    "skipToContent": "İçeriğe geç",
+    "home": "Ana Sayfa",
+    "collection": "Koleksiyon",
+    "cart": "Sepet",
+    "cartCount": "{{count}} ürün",
+    "admin": "Yönetim",
+    "signIn": "Giriş Yap",
+    "signOut": "Çıkış Yap",
+    "language": "Dil",
+    "menu": "Menü",
+    "openMenu": "Gezinme menüsünü aç",
+    "closeMenu": "Gezinme menüsünü kapat",
+    "search": "Ara",
+    "searchPlaceholder": "Ara",
+    "badge": { "new": "Yeni" },
+    "primary": {
+      "women": "Kadın",
+      "men": "Erkek",
+      "exclusiveCollection": "Özel Koleksiyon",
+      "giftSets": "Hediye Setleri"
+    },
+    "contact": {
+      "email": "info@perfume.example",
+      "phone": "955123456789"
+    },
+    "secondary": {
+      "bestSellers": "En çok satanlar",
+      "latest": "En son ürünler",
+      "giftSets": "Hediye setleri",
+      "promises": "Tütsü ve vaatler",
+      "everyMoment": "Her an için bir koku",
+      "orientalNotes": "Oryantal notlar"
+    }
+  },
+  "hero": {
+    "ribbon": "Maison de Parfum",
+    "heading": "Koku Sanatını Deneyimle",
+    "subheading": "Zamansız parfümeriyle modern zarafeti buluşturan el yapımı parfümler.",
+    "primaryCta": "Koleksiyonu Keşfet",
+    "secondaryCta": "Hikâyemizi öğren",
+    "benefits": {
+      "composition": "Paris'te işlenen el yapımı esanslar",
+      "notes": "Katmanlı üst, kalp ve dip notalar",
+      "sillage": "Zarif, uzun süre kalıcı iz",
+      "refillable": "Yeniden doldurulabilir kristal flakonlar"
+    },
+    "previewLabel": "Notalara göz at",
+    "previewTitle": "Olfaktif Mimari",
+    "previewDescription": "Her harman, sürdürülebilir kaynaklı bitkiler ve nadir reçinelerle yavaşça damıtılır.",
+    "stats": {
+      "top": "Üst",
+      "topNotes": "Canlı bergamot · Pembe biber",
+      "heart": "Kalp",
+      "heartNotes": "Şam gülü · Kaşmir odunları",
+      "base": "Dip",
+      "baseNotes": "Ambergris akoru · Vetiver",
+      "longLasting": "Kalıcılık",
+      "hours": "10 saatlik aura"
+    }
+  },
+  "products": {
+    "sectionLabel": "İmza Seçkisi",
+    "sectionTitle": "Öne Çıkan Kokular",
+    "priceLabel": "Fiyat",
+    "viewDetails": "Detayları Gör",
+    "addToCart": "Sepete Ekle",
+    "adding": "Ekleniyor…",
+    "added": "Eklendi",
+    "outOfStock": "Stokta yok",
+    "empty": "Bu kiracı için henüz ürün eklenmedi.",
+    "newArrival": "Yeni",
+    "overlayDescription": "Bu kokunun ardındaki katmanlı akorları ve ustalığı keşfet.",
+    "uncategorized": "İmza Harman"
+  },
+  "product": {
+    "backLink": "Koleksiyona dön",
+    "notesHeading": "Koku Notları",
+    "notesDescription": "Bu extrait'in aromatik mimarisini ve seçilmiş akorlarını keşfet.",
+    "notesFallback": "Parfümörlerimiz tarafından seçildi",
+    "topNotes": "Üst notalar",
+    "heartNotes": "Kalp notalar",
+    "baseNotes": "Dip notalar",
+    "volume": "Şişe Boyutu",
+    "volumeDefault": "50 ml extrait",
+    "longevity": "Kalıcılık",
+    "longevityHours": "En fazla {{hours}} saat",
+    "longevityDefault": "Uzun ömürlü iz",
+    "category": "Koleksiyon",
+    "tenant": "İmza Evi",
+    "addToCart": "Sepete Ekle",
+    "descriptionHeading": "Neden seveceksin",
+    "relatedHeading": "Birlikte harika uyum sağlar",
+    "relatedDescription": "Auranı kişiselleştirmek için uyumlu akorlarla katmanla.",
+    "backToCollection": "Koleksiyona geri dön",
+    "ingredientsHeading": "Kompozisyon",
+    "accordsHeading": "Akorlar",
+    "deliveryCopy": "120 € üzeri siparişlerde dünya çapı ücretsiz gönderim.",
+    "outOfStockMessage": "Bekleme listesine katıl — bu harman yakında geri dönecek.",
+    "stock": {
+      "limited": "Sınırlı • {{count}} adet kaldı",
+      "available": "Stokta"
+    }
+  },
+  "cart": {
+    "title": "Sepetin",
+    "empty": "Sepetin boş. Bir sonraki imza kokunu bulmak için koleksiyonumuza göz at.",
+    "continue": "Alışverişe devam et",
+    "summary": "Sipariş Özeti",
+    "subtotal": "Ara Toplam",
+    "checkout": "Güvenli Ödeme",
+    "items": "Ürünler",
+    "remove": "Kaldır",
+    "quantity": "Adet",
+    "update": "Adedi Güncelle",
+    "shippingNotice": "120 € üzeri siparişlerde ücretsiz gönderim."
+  },
+  "admin": {
+    "title": "Yönetim Paneli",
+    "subtitle": "Ürünleri, siparişleri ve kiracı deneyimlerini tek yerden yönet.",
+    "nav": {
+      "dashboard": "Gösterge Paneli",
+      "products": "Ürünler",
+      "orders": "Siparişler"
+    },
+    "dashboard": {
+      "metrics": {
+        "revenue": "Ciro",
+        "orders": "Siparişler",
+        "customers": "Müşteriler",
+        "inventory": "SKU Sayısı"
+      }
+    },
+    "products": {
+      "title": "Katalog",
+      "empty": "Henüz ürün eklenmemiş.",
+      "create": "Ürün oluştur",
+      "save": "Ürünü kaydet",
+      "update": "Ürünü güncelle",
+      "delete": "Sil",
+      "cancel": "Vazgeç",
+      "statusLabel": "Öne çıkan",
+      "confirmDelete": "Bu ürünü silmek istediğine emin misin?",
+      "form": {
+        "name": "İsim",
+        "slug": "Bağlantı",
+        "description": "Açıklama",
+        "price": "Fiyat",
+        "stock": "Stok",
+        "category": "Kategori",
+        "image": "Görsel URL",
+        "isFeatured": "Öne çıkan olarak işaretle",
+        "submitCreate": "Ürün oluştur",
+        "submitUpdate": "Değişiklikleri kaydet"
+      },
+      "table": {
+        "name": "İsim",
+        "price": "Fiyat",
+        "stock": "Stok",
+        "updated": "Güncellendi",
+        "actions": "İşlemler"
+      },
+      "feedback": {
+        "created": "Ürün oluşturuldu",
+        "updated": "Ürün güncellendi",
+        "deleted": "Ürün silindi"
+      }
+    },
+    "orders": {
+      "title": "Siparişler",
+      "empty": "Henüz sipariş yok.",
+      "table": {
+        "order": "Sipariş",
+        "customer": "Müşteri",
+        "status": "Durum",
+        "total": "Toplam",
+        "created": "Oluşturuldu",
+        "actions": "İşlemler"
+      },
+      "status": {
+        "PENDING": "Beklemede",
+        "PROCESSING": "Hazırlanıyor",
+        "COMPLETED": "Tamamlandı",
+        "CANCELLED": "İptal edildi"
+      },
+      "actions": {
+        "view": "Görüntüle",
+        "markProcessing": "Hazırlanıyor olarak işaretle",
+        "markCompleted": "Tamamlandı olarak işaretle",
+        "cancel": "Siparişi iptal et"
+      },
+      "feedback": {
+        "statusUpdated": "Sipariş durumu güncellendi"
+      }
+    },
+    "notifications": {
+      "error": "Bir şeyler ters gitti. Lütfen tekrar dene."
+    }
+  },
+  "footer": {
+    "newsletterHeading": "Kokunun İzinde Kal",
+    "newsletterDescription": "Sınırlı üretim sürümlere ve küratörlü koku eşleştirmelerine erken erişim kazan.",
+    "newsletterPlaceholder": "E-posta adresi gir",
+    "newsletterCta": "Atölyeye Katıl",
+    "copyright": "Tüm hakları saklıdır.",
+    "crafted": "Koku tutkunları için özenle tasarlandı.",
+    "contact": {
+      "email": "hello@perfumestore.com",
+      "phone": "+90 216 123 45 67"
+    }
+  },
+  "auth": {
+    "title": "PerfumeStore'a giriş yap",
+    "subtitle": "Tek kullanımlık kod veya Google ile devam et.",
+    "emailLabel": "E-posta adresi",
+    "sendOtp": "Kodu gönder",
+    "otpLabel": "Tek kullanımlık kod",
+    "otpPlaceholder": "123456",
+    "verifyOtp": "Kodu doğrula",
+    "google": "Google ile devam et",
+    "success": "Doğrulama kodu için e-postanı kontrol et.",
+    "error": "İstek tamamlanamadı. Lütfen tekrar dene."
+  },
+  "filters": {
+    "categoryLabel": "Kategori seç",
+    "categoryAll": "Tüm kategoriler",
+    "priceTitle": "Fiyat",
+    "priceLabel": "En fazla {{value}}",
+    "featuredOnly": "Sadece öne çıkanlar",
+    "clear": "Filtreleri sıfırla",
+    "countLabel": "{{count}} koku gösteriliyor",
+    "empty": "Filtrelerine uygun koku bulunamadı."
+  },
+  "pwa": {
+    "installPrompt": "PerfumeStore uygulamasını yüklemek ister misin?",
+    "offlineReady": "İçerikler önbelleğe alındı ve çevrimdışı da hazır.",
+    "updateAvailable": "Yeni bir sürüm hazır.",
+    "refresh": "Yenile",
+    "close": "Kapat"
+  },
+  "notifications": {
+    "cartUpdated": "Sepet güncellendi",
+    "cartError": "Sepet güncellenemedi. Lütfen tekrar dene."
+  }
+}

@@ -1,0 +1,372 @@
+---
+import Hero from "../components/storefront/Hero.astro";
+import ProductCard from "../components/storefront/ProductCard.astro";
+import Layout from "../layouts/Layout.astro";
+import { getBusinessConfig } from "../lib/business";
+import { createTranslator } from "../lib/i18n";
+import { getUnsplashImage } from "../lib/unsplash";
+import { listProducts } from "../lib/services/products";
+
+export const prerender = false;
+
+const locale = (Astro.locals as any).locale ?? "en";
+const t = createTranslator(locale);
+const products = await listProducts();
+const business = await getBusinessConfig();
+const user = (Astro.locals as any).user ?? null;
+const isAdmin = user?.role === "ADMIN";
+const heroImage =
+  (await getUnsplashImage("gentleman perfume")) ??
+  (business.assets.fallbackHeroImage
+    ? { url: business.assets.fallbackHeroImage, alt: business.name }
+    : null);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Store",
+  name: business.name,
+  url: business.domain ?? Astro.url.origin,
+  image: heroImage?.url ?? null,
+  description:
+    "Discover signature fragrances crafted to capture your individuality.",
+  sameAs: business.domain ? [business.domain] : [],
+  makesOffer: products.slice(0, 12).map((product) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Product",
+      name: product.name,
+      description: product.description ?? undefined,
+      image: product.image ?? undefined,
+      sku: product.slug ?? undefined,
+    },
+    price: Number(product.price ?? 0),
+    priceCurrency: "EUR",
+    availability:
+      product.stock && product.stock > 0
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+  })),
+};
+---
+
+<Layout
+  title="PerfumeStore – Artisanal Fragrance House"
+  description="Discover signature fragrances crafted to capture your individuality."
+  structuredData={structuredData}
+  image={heroImage?.url ?? null}
+  overlayHeader={true}
+  mainFullBleed={true}
+>
+  <!-- Hero Section -->
+  <section
+    class="relative min-h-screen flex items-center justify-center overflow-hidden pt-6"
+  >
+    <!-- Video Background -->
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source src="/videos/hero-video.mp4" type="video/mp4" />
+      <!-- Fallback image -->
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url(${heroImage?.url ?? '/background.svg'}); background-color: #F6F2E9;"
+      >
+      </div>
+    </video>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center w-full">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 font-serif">
+        {t("hero.heading")}
+      </h1>
+      <p
+        class="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed"
+      >
+        {t("hero.subheading")}
+      </p>
+      <a
+        href="#bestsellers"
+        class="inline-block px-8 py-4 bg-[#B68D40] text-[#2B2B2B] text-lg font-semibold rounded-full hover:bg-[#B68D40]/90 transition-colors duration-300 shadow-lg"
+      >
+        {t("hero.primaryCta")}
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div
+      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+    >
+      <div
+        class="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center"
+      >
+        <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestsellers Section -->
+  <section id="bestsellers" class="py-20 px-6 bg-[#F6F2E9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-4 font-serif"
+        >
+          {t("navigation.secondary.bestSellers")}
+        </h2>
+        <div class="w-24 h-1 bg-[#B68D40] mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {
+          products
+            .slice(0, 4)
+            .map((product, index) => (
+              <ProductCard product={product} t={t} locale={locale} />
+            ))
+        }
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/products"
+          class="inline-block px-8 py-4 bg-[#3A4B2E] text-white text-lg font-semibold rounded-full hover:bg-[#3A4B2E]/90 transition-colors"
+        >
+          {t("products.viewDetails")}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Women Section -->
+  <section id="women" class="py-20 px-6 bg-[#F6F2E9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-4 font-serif"
+        >
+          {t("navigation.primary.women")}
+        </h2>
+        <p class="text-xl text-[#2B2B2B]/70 max-w-2xl mx-auto">
+          {t("hero.subheading")}
+        </p>
+      </div>
+      <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
+        {
+          products
+            .filter((p) => p.category === "Women")
+            .map((product) => (
+              <div class="flex-shrink-0 w-80 snap-start">
+                <ProductCard product={product} t={t} locale={locale} />
+              </div>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Men Section -->
+  <section id="men" class="py-20 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-4 font-serif"
+        >
+          {t("navigation.primary.men")}
+        </h2>
+        <p class="text-xl text-[#2B2B2B]/70 max-w-2xl mx-auto">
+          {t("hero.subheading")}
+        </p>
+      </div>
+      <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
+        {
+          products
+            .filter((p) => p.category === "Men")
+            .map((product) => (
+              <div class="flex-shrink-0 w-80 snap-start">
+                <ProductCard product={product} t={t} locale={locale} />
+              </div>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Exclusive Collection Section -->
+  <section id="exclusive" class="py-20 px-6 bg-[#F6F2E9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-4 font-serif"
+        >
+          {t("navigation.primary.exclusiveCollection")}
+        </h2>
+        <p class="text-xl text-[#2B2B2B]/70 max-w-2xl mx-auto">
+          {t("hero.subheading")}
+        </p>
+      </div>
+      <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
+        {
+          products
+            .filter((p) => p.category === "Exclusive Collection")
+            .map((product) => (
+              <div class="flex-shrink-0 w-80 snap-start">
+                <ProductCard product={product} t={t} locale={locale} />
+              </div>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Gift Sets Section -->
+  <section id="gifts" class="py-20 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-4 font-serif"
+        >
+          {t("navigation.primary.giftSets")}
+        </h2>
+        <p class="text-xl text-[#2B2B2B]/70 max-w-2xl mx-auto">
+          {t("hero.subheading")}
+        </p>
+      </div>
+      <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
+        {
+          products
+            .filter((p) => p.category === "Gift Sets")
+            .map((product) => (
+              <div class="flex-shrink-0 w-80 snap-start">
+                <ProductCard product={product} t={t} locale={locale} />
+              </div>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-20 px-6 bg-[#F6F2E9]">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B2B2B] mb-8 font-serif">
+        {t("hero.heading")}
+      </h2>
+      <p class="text-xl text-[#2B2B2B]/70 leading-relaxed mb-12">
+        {t("hero.subheading")}
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-md border border-[#F6F2E9]">
+          <div
+            class="w-12 h-12 bg-[#B68D40] rounded-full flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-[#2B2B2B] mb-4">
+            {t("hero.benefits.composition")}
+          </h3>
+          <p class="text-[#2B2B2B]/70">
+            {t("hero.benefits.notes")}
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-md border border-[#F6F2E9]">
+          <div
+            class="w-12 h-12 bg-[#3A4B2E] rounded-full flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-[#2B2B2B] mb-4">
+            {t("hero.benefits.sillage")}
+          </h3>
+          <p class="text-[#2B2B2B]/70">
+            {t("hero.benefits.refillable")}
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-md border border-[#F6F2E9]">
+          <div
+            class="w-12 h-12 bg-[#B68D40] rounded-full flex items-center justify-center mb-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-[#2B2B2B] mb-4">
+            {t("hero.benefits.sillage")}
+          </h3>
+          <p class="text-[#2B2B2B]/70">
+            {t("hero.benefits.refillable")}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import type { AuthUser } from '../../lib/auth';
+import type { Translator } from '../../lib/i18n';
+
+const { t, active, user } = Astro.props as {
+  t: Translator;
+  active: 'dashboard' | 'products' | 'orders';
+  user: AuthUser | null;
+};
+
+const navItems = [
+  { key: 'dashboard', href: '/admin', label: t('admin.nav.dashboard') },
+  { key: 'products', href: '/admin/products', label: t('admin.nav.products') },
+  { key: 'orders', href: '/admin/orders', label: t('admin.nav.orders') }
+];
+---
+
+<section class="space-y-10 py-10">
+  <header class="space-y-2">
+    <p class="text-xs uppercase tracking-[0.4em] text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)]">
+      {user?.email}
+    </p>
+    <h1 class="font-heading text-3xl font-semibold text-[var(--color-secondary)]">
+      {t('admin.title')}
+    </h1>
+    <p class="text-sm text-[color-mix(in srgb,var(--color-secondary) 70%,white 30%)]">
+      {t('admin.subtitle')}
+    </p>
+  </header>
+  <nav class="flex flex-wrap gap-3">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+          active === item.key
+            ? 'border-[var(--color-secondary)] bg-[var(--color-secondary)] text-white'
+            : 'border-[color-mix(in srgb,var(--color-secondary) 20%,transparent 80%)] text-[var(--color-secondary)] hover:border-[var(--color-secondary)]'
+        }`}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+  <div class="space-y-8">
+    <slot />
+  </div>
+</section>

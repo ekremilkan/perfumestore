@@ -1,0 +1,121 @@
+---
+import Footer from '../components/layout/Footer.astro';
+import Navigation from '../components/layout/Navigation.astro';
+import { getCartContext } from '../lib/cart';
+import { getBusinessConfig } from '../lib/business';
+import { createTranslator, SUPPORTED_LOCALES } from '../lib/i18n';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string | null;
+  structuredData?:
+    | Record<string, unknown>
+    | Array<Record<string, unknown>>;
+  noIndex?: boolean;
+  ogType?: string;
+  overlayHeader?: boolean;
+  mainFullBleed?: boolean;
+}
+
+const { title, description, image, structuredData, noIndex, ogType, overlayHeader, mainFullBleed } =
+  Astro.props as Props;
+const locale = Astro.locals.locale ?? 'en';
+const translator = createTranslator(locale) as (key: string) => string;
+const business = await getBusinessConfig();
+const cart = await getCartContext(Astro.cookies);
+
+const pageTitle = title ?? (translator('meta.homeTitle') as string);
+const pageDescription = description ?? (translator('meta.homeDescription') as string);
+const metaImage =
+  image ??
+  business.assets.fallbackHeroImage ??
+  null;
+const canonicalUrl = Astro.url.href;
+const shouldIndex = noIndex !== true;
+const openGraphType = ogType ?? 'website';
+
+const theme = business.theme;
+const themeStyle = {
+  '--color-primary': theme.primary,
+  '--color-secondary': theme.secondary,
+  '--color-accent': theme.accent,
+  '--color-muted': theme.muted,
+  '--color-background': theme.background,
+  '--color-surface': theme.surface,
+  '--font-heading': theme.headingFont,
+  '--font-body': theme.bodyFont
+} as const;
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content={theme.primary} />
+    <meta name="color-scheme" content="light" />
+    {!shouldIndex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content={openGraphType} />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    {metaImage && <meta property="og:image" content={metaImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    {metaImage && <meta name="twitter:image" content={metaImage} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
+    />
+    {structuredData && (
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
+    )}
+    <slot name="head" />
+  </head>
+  <body class="bg-[var(--color-background)] text-[var(--color-secondary)] antialiased min-h-screen flex flex-col" style={themeStyle}>
+    <a href="#main" class="absolute left-4 top-4 z-50 -translate-y-20 rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-white transition focus:translate-y-0 focus:outline-none">
+      {translator('navigation.skipToContent')}
+    </a>
+    <header class="fixed inset-x-0 top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 pt-1 md:pt-2">
+      <div class="mx-auto w-full max-w-6xl">
+      <Navigation
+        t={translator}
+        cartQuantity={cart.totalQuantity}
+        locale={locale}
+        user={Astro.locals.user ?? null}
+        businessName={business.name}
+        locales={SUPPORTED_LOCALES}
+        invert={overlayHeader === true}
+      />
+      </div>
+    </header>
+    <main id="main" class={mainFullBleed ? 'w-full pb-16 pt-6 flex-grow' : 'mx-auto w-full max-w-6xl px-6 pb-16 pt-6 flex-grow'}>
+      <slot />
+    </main>
+    <Footer t={translator} businessName={business.name} />
+    <script>
+      document.addEventListener('cart:updated', (event: Event) => {
+        const customEvent = event as CustomEvent<{ totalQuantity: number }>;
+        const detail = customEvent.detail;
+        const badge = document.querySelector('[data-cart-count]');
+        if (badge && typeof detail.totalQuantity === 'number') {
+          badge.textContent = String(detail.totalQuantity);
+          badge.setAttribute('data-has-items', String(detail.totalQuantity > 0));
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "id": "perfume",
+  "name": "PerfumeStore",
+  "domain": "https://perfume.example.com",
+  "tenantId": "perfume",
+  "theme": {
+    "primary": "#C59D5F",
+    "secondary": "#111111",
+    "accent": "#F8D800",
+    "muted": "#B8A574",
+    "background": "#F1F1F1",
+    "surface": "#FFFFFF",
+    "headingFont": "'Playfair Display', serif",
+    "bodyFont": "'Inter', sans-serif"
+  },
+  "assets": {
+    "heroImageQuery": "luxury perfume bottle with golden liquid on marble at golden hour",
+    "collectionImageQuery": "minimal perfume flatlay with silk fabric",
+    "fallbackHeroImage": "/images/perfume-hero.jpg"
+  },
+  "seo": {
+    "defaultTitle": "PerfumeStore – Artisanal Fragrance House",
+    "defaultDescription": "PerfumeStore crafts small-batch fragrances with layered storytelling for modern tastemakers."
+  }
+}

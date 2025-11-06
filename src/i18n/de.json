@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "homeTitle": "PerfumeStore – Manufaktur für Düfte",
+    "homeDescription": "Entdecke Signaturdüfte für jede Stimmung in der kuratierten Kollektion von PerfumeStore.",
+    "productTitle": "{{name}} – PerfumeStore",
+    "productDescription": "Erfahre die Duftgeschichte hinter {{name}} von PerfumeStore.",
+    "cartTitle": "Dein Warenkorb – PerfumeStore",
+    "cartDescription": "Überprüfe deine kuratierte Duftauswahl vor dem Checkout.",
+    "loginTitle": "Melde dich bei deinem PerfumeStore-Konto an",
+    "adminTitle": "PerfumeStore Admin-Konsole",
+    "adminDescription": "Verwalte Produkte, Bestellungen und Mandanten-Erlebnisse zentral."
+  },
+  "navigation": {
+    "skipToContent": "Zum Inhalt springen",
+    "home": "Startseite",
+    "collection": "Kollektion",
+    "cart": "Warenkorb",
+    "cartCount": "{{count}} Artikel",
+    "admin": "Admin",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "language": "Sprache",
+    "menu": "Menü",
+    "openMenu": "Navigationsmenü öffnen",
+    "closeMenu": "Navigationsmenü schließen",
+    "search": "Suche",
+    "searchPlaceholder": "Suchen",
+    "badge": { "new": "Neu" },
+    "primary": {
+      "women": "Damen",
+      "men": "Herren",
+      "exclusiveCollection": "Exklusive Kollektion",
+      "giftSets": "Geschenksets"
+    },
+    "contact": {
+      "email": "info@parfum.beispiel",
+      "phone": "955123456789"
+    },
+    "secondary": {
+      "bestSellers": "Bestseller",
+      "latest": "Neuheiten",
+      "giftSets": "Geschenksets",
+      "promises": "Rituale & Geschichten",
+      "everyMoment": "Ein Duft für jeden Moment",
+      "orientalNotes": "Orientalische Noten"
+    }
+  },
+  "hero": {
+    "ribbon": "Maison de Parfum",
+    "heading": "Erlebe die Kunst des Dufts",
+    "subheading": "Handgemischte Parfums, inspiriert von zeitloser Parfümerie und moderner Eleganz.",
+    "primaryCta": "Kollektion entdecken",
+    "secondaryCta": "Unsere Geschichte",
+    "benefits": {
+      "composition": "Handverarbeitete Essenzen, in Paris veredelt",
+      "notes": "Mehrschichtige Kopf-, Herz- und Basisnoten",
+      "sillage": "Unaufdringliche, langanhaltende Sillage",
+      "refillable": "Wiederbefüllbare Kristallflakons"
+    },
+    "previewLabel": "Duftnoten entdecken",
+    "previewTitle": "Olfaktorische Architektur",
+    "previewDescription": "Jeder Duft entsteht aus langsam destillierten Botanicals und seltenen Harzen aus nachhaltigen Quellen.",
+    "stats": {
+      "top": "Kopf",
+      "topNotes": "Spritzige Bergamotte · Rosa Pfeffer",
+      "heart": "Herz",
+      "heartNotes": "Damaszener Rose · Cashmereholz",
+      "base": "Basis",
+      "baseNotes": "Ambra-Akkord · Vetiver",
+      "longLasting": "Tragedauer",
+      "hours": "10 Std. Aura"
+    }
+  },
+  "products": {
+    "sectionLabel": "Signature-Auswahl",
+    "sectionTitle": "Ausgewählte Düfte",
+    "priceLabel": "Preis",
+    "viewDetails": "Details ansehen",
+    "addToCart": "In den Warenkorb",
+    "adding": "Wird hinzugefügt…",
+    "added": "Hinzugefügt",
+    "outOfStock": "Ausverkauft",
+    "empty": "Für diesen Mandanten sind noch keine Produkte verfügbar.",
+    "newArrival": "Neuheit",
+    "overlayDescription": "Entdecken Sie die Schichten und das handwerkliche Können hinter diesem Duft.",
+    "uncategorized": "Signature-Blending"
+  },
+  "product": {
+    "backLink": "Zur Kollektion",
+    "notesHeading": "Duftnoten",
+    "notesDescription": "Erkunden Sie die aromatische Architektur und kuratierten Akkorde dieses Extraits.",
+    "notesFallback": "Von unseren Parfümeuren kuratiert",
+    "topNotes": "Kopfnote",
+    "heartNotes": "Herznote",
+    "baseNotes": "Basisnote",
+    "volume": "Flaschengröße",
+    "volumeDefault": "50 ml Extrait",
+    "longevity": "Duftdauer",
+    "longevityHours": "Bis zu {{hours}} Stunden",
+    "longevityDefault": "Langanhaltende Spur",
+    "category": "Kollektion",
+    "tenant": "Signaturhaus",
+    "addToCart": "In den Warenkorb",
+    "descriptionHeading": "Deshalb wirst du es lieben",
+    "relatedHeading": "Harmoniert mit",
+    "relatedDescription": "Kombinieren Sie ergänzende Akkorde, um Ihre Aura individuell zu gestalten.",
+    "backToCollection": "Zurück zur Kollektion",
+    "ingredientsHeading": "Komposition",
+    "accordsHeading": "Akkorde",
+    "deliveryCopy": "Kostenloser weltweiter Versand bei Bestellungen über 120 €.",
+    "outOfStockMessage": "Melde dich für die Warteliste an – dieser Duft kehrt bald zurück.",
+    "stock": {
+      "limited": "Limitiert • {{count}} übrig",
+      "available": "Verfügbar"
+    }
+  },
+  "cart": {
+    "title": "Dein Warenkorb",
+    "empty": "Dein Warenkorb ist leer. Entdecke unsere Kollektion für deinen nächsten Signaturduft.",
+    "continue": "Weiter einkaufen",
+    "summary": "Bestellübersicht",
+    "subtotal": "Zwischensumme",
+    "checkout": "Sicher zur Kasse",
+    "items": "Artikel",
+    "remove": "Entfernen",
+    "quantity": "Menge",
+    "update": "Menge aktualisieren",
+    "shippingNotice": "Kostenloser Versand ab 120 € Bestellwert."
+  },
+  "admin": {
+    "title": "Admin-Konsole",
+    "subtitle": "Verwalte Produkte, Bestellungen und Mandanten-Erlebnisse zentral.",
+    "nav": {
+      "dashboard": "Dashboard",
+      "products": "Produkte",
+      "orders": "Bestellungen"
+    },
+    "dashboard": {
+      "metrics": {
+        "revenue": "Umsatz",
+        "orders": "Bestellungen",
+        "customers": "Kunden",
+        "inventory": "Artikelanzahl"
+      }
+    },
+    "products": {
+      "title": "Katalog",
+      "empty": "Noch keine Produkte vorhanden.",
+      "create": "Produkt anlegen",
+      "save": "Produkt speichern",
+      "update": "Produkt aktualisieren",
+      "delete": "Löschen",
+      "cancel": "Abbrechen",
+      "statusLabel": "Highlight",
+      "confirmDelete": "Möchtest du dieses Produkt wirklich löschen?",
+      "form": {
+        "name": "Name",
+        "slug": "Slug",
+        "description": "Beschreibung",
+        "price": "Preis",
+        "stock": "Bestand",
+        "category": "Kategorie",
+        "image": "Bild-URL",
+        "isFeatured": "Als Highlight markieren",
+        "submitCreate": "Produkt erstellen",
+        "submitUpdate": "Änderungen speichern"
+      },
+      "table": {
+        "name": "Name",
+        "price": "Preis",
+        "stock": "Bestand",
+        "updated": "Aktualisiert",
+        "actions": "Aktionen"
+      },
+      "feedback": {
+        "created": "Produkt erstellt",
+        "updated": "Produkt aktualisiert",
+        "deleted": "Produkt entfernt"
+      }
+    },
+    "orders": {
+      "title": "Bestellungen",
+      "empty": "Noch keine Bestellungen.",
+      "table": {
+        "order": "Bestellung",
+        "customer": "Kunde",
+        "status": "Status",
+        "total": "Gesamt",
+        "created": "Erstellt",
+        "actions": "Aktionen"
+      },
+      "status": {
+        "PENDING": "Ausstehend",
+        "PROCESSING": "In Bearbeitung",
+        "COMPLETED": "Abgeschlossen",
+        "CANCELLED": "Storniert"
+      },
+      "actions": {
+        "view": "Ansehen",
+        "markProcessing": "Als in Bearbeitung markieren",
+        "markCompleted": "Als abgeschlossen markieren",
+        "cancel": "Bestellung stornieren"
+      },
+      "feedback": {
+        "statusUpdated": "Bestellstatus aktualisiert"
+      }
+    },
+    "notifications": {
+      "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "footer": {
+    "newsletterHeading": "Bleib in der Duftspur",
+    "newsletterDescription": "Erhalte frühzeitigen Zugang zu limitierten Editionen und kuratierten Duftpaarungen.",
+    "newsletterPlaceholder": "E-Mail-Adresse",
+    "newsletterCta": "Zum Atelier",
+    "copyright": "Alle Rechte vorbehalten.",
+    "crafted": "Mit Liebe für Duftliebhaber.",
+    "contact": {
+      "email": "hello@perfumestore.com",
+      "phone": "+49 30 12345678"
+    }
+  },
+  "auth": {
+    "title": "Bei PerfumeStore anmelden",
+    "subtitle": "Nutze einen Einmalcode oder Google, um fortzufahren.",
+    "emailLabel": "E-Mail-Adresse",
+    "sendOtp": "Code senden",
+    "otpLabel": "Einmalcode",
+    "otpPlaceholder": "123456",
+    "verifyOtp": "Code bestätigen",
+    "google": "Mit Google fortfahren",
+    "success": "Bitte prüfe dein Postfach auf den Bestätigungscode.",
+    "error": "Die Anfrage konnte nicht abgeschlossen werden. Bitte erneut versuchen."
+  },
+  "filters": {
+    "categoryLabel": "Kategorie wählen",
+    "categoryAll": "Alle Kategorien",
+    "priceTitle": "Preis",
+    "priceLabel": "Max. {{value}}",
+    "featuredOnly": "Nur Highlights",
+    "clear": "Filter zurücksetzen",
+    "countLabel": "{{count}} Düfte angezeigt",
+    "empty": "Keine Düfte passen zu deiner Auswahl."
+  },
+  "pwa": {
+    "installPrompt": "PerfumeStore-App installieren?",
+    "offlineReady": "Inhalte sind zwischengespeichert und offline verfügbar.",
+    "updateAvailable": "Eine neue Version ist verfügbar.",
+    "refresh": "Aktualisieren",
+    "close": "Schließen"
+  },
+  "notifications": {
+    "cartUpdated": "Warenkorb aktualisiert",
+    "cartError": "Der Warenkorb konnte nicht aktualisiert werden. Bitte versuche es erneut."
+  }
+}

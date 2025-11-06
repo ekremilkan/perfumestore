@@ -1,0 +1,77 @@
+---
+import type { Product } from '@prisma/client';
+
+import { AddToCartButton } from './AddToCartButton.tsx';
+import type { Translator } from '../../lib/i18n';
+
+const { product, t, locale } = Astro.props as {
+  product: Product;
+  t: Translator;
+  locale: string;
+};
+
+const price = Number(product.price ?? 0);
+const formatter = new Intl.NumberFormat(locale, {
+  style: 'currency',
+  currency: 'EUR'
+});
+---
+
+<a
+  href={`/product/${product.slug}`}
+  class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col h-full block"
+  data-product-card
+  data-category={product.category ?? 'uncategorized'}
+  data-price={price}
+  data-featured={String(product.isFeatured)}
+>
+  <div class="relative block overflow-hidden aspect-square flex-shrink-0">
+    {product.image ? (
+      <img
+        src={product.image}
+        alt={product.name}
+        loading="lazy"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+    ) : (
+      <div class="w-full h-full bg-[#F6F2E9] flex items-center justify-center">
+        <svg class="w-12 h-12 text-[#2B2B2B]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+      </div>
+    )}
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+     {product.isFeatured && (
+       <span class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-[#B68D40] px-3 py-1 text-xs font-semibold text-white shadow">
+         {t("products.newArrival")}
+       </span>
+     )}
+  </div>
+  <div class="p-6 flex flex-col justify-between flex-grow">
+    <div>
+       <div class="text-sm text-[#3A4B2E] uppercase tracking-wide mb-2">
+         {product.category ?? t("products.uncategorized")}
+       </div>
+      <h3 class="text-xl font-semibold text-[#2B2B2B] mb-2 line-clamp-2 hover:text-[#B68D40] transition-colors">
+        {product.name}
+      </h3>
+    </div>
+     <div class="flex items-center justify-between mt-4">
+       <span class="text-2xl font-bold text-[#B68D40]">
+         {formatter.format(price)}
+       </span>
+        <AddToCartButton
+          client:idle
+          productId={product.id}
+          labels={{
+            idle: t("products.addToCart"),
+            loading: t("products.adding"),
+            success: t("products.added"),
+            error: t("notifications.cartError")
+          }}
+          className="w-12 h-12 bg-[#3A4B2E] text-white rounded-full flex items-center justify-center hover:bg-[#3A4B2E]/90 transition-colors"
+        />
+     </AddToCartButton>
+     </div>
+   </div>
+ </a>

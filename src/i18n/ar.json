@@ -1,0 +1,53 @@
+{
+  "navigation": {
+    "collection": "المجموعة",
+    "admin": "الإدارة",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "language": "اللغة",
+    "search": "بحث",
+    "searchPlaceholder": "ابحث",
+    "badge": { "new": "جديد" },
+    "primary": {
+      "women": "نساء",
+      "men": "رجال",
+      "exclusiveCollection": "مجموعة حصرية",
+      "giftSets": "علب هدايا"
+    },
+    "contact": {
+      "email": "info@salla.sa",
+      "phone": "955123456789"
+    },
+    "secondary": {
+      "bestSellers": "الأكثر مبيعًا",
+      "latest": "أحدث المنتجات",
+      "giftSets": "مجموعات الهدايا",
+      "promises": "العود والوعود",
+      "everyMoment": "عطر لكل لحظة",
+      "orientalNotes": "النغمات الشرقية"
+    }
+  },
+  "hero": {
+    "heading": "عطور فاخرة، هدوء أنيق",
+    "subheading": "اكتشف مجموعتنا المختارة بعناية من الروائح الأنيقة.",
+    "primaryCta": "اكتشف الآن"
+  },
+  "cart": {
+    "label": "السلة",
+    "description": "عرض السلة وعدد العناصر"
+  },
+  "footer": {
+    "newsletterHeading": "ابق في أثر العطر",
+    "newsletterDescription": "احصل على وصول مبكر للإصدارات المحدودة وأزواج العطور المختارة.",
+    "newsletterPlaceholder": "أدخل بريدك الإلكتروني",
+    "newsletterCta": "انضم إلى الورشة",
+    "copyright": "جميع الحقوق محفوظة.",
+    "crafted": "مصمم لعشاق العطور.",
+    "contact": {
+      "email": "hello@perfumestore.com",
+      "phone": "+966 11 123 4567"
+    }
+  }
+}

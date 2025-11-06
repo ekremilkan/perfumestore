@@ -1,0 +1,76 @@
+---
+import AdminLayout from '../../components/admin/AdminLayout.astro';
+import { ProductManager } from '../../components/admin/ProductManager.tsx';
+import Layout from '../../layouts/Layout.astro';
+import { prisma } from '../../lib/prisma';
+import { createTranslator } from '../../lib/i18n';
+import { getTenantId } from '../../lib/business';
+
+const locale = Astro.locals.locale ?? 'en';
+const t = createTranslator(locale);
+const tenantId = await getTenantId();
+
+const products = await prisma.product.findMany({
+  where: { tenant_id: tenantId },
+  orderBy: { updatedAt: 'desc' }
+});
+
+const initialProducts = products.map((product) => ({
+  id: product.id,
+  name: product.name,
+  slug: product.slug,
+  description: product.description ?? '',
+  price: Number(product.price ?? 0),
+  stock: product.stock,
+  category: product.category ?? '',
+  image: product.image ?? '',
+  isFeatured: product.isFeatured,
+  updatedAt: product.updatedAt.toISOString()
+}));
+---
+
+<Layout title={t('meta.adminTitle')} description={t('meta.adminDescription')}>
+  <AdminLayout t={t} active="products" user={Astro.locals.user ?? null}>
+    <ProductManager
+      client:load
+      initialProducts={initialProducts}
+      locale={locale}
+      currency="EUR"
+      texts={{
+        listTitle: t('admin.products.title'),
+        empty: t('admin.products.empty'),
+        create: t('admin.products.create'),
+        update: t('admin.products.update'),
+        delete: t('admin.products.delete'),
+        cancel: t('admin.products.cancel'),
+        statusLabel: t('admin.products.statusLabel'),
+        confirmDelete: t('admin.products.confirmDelete'),
+        error: t('admin.notifications.error'),
+        feedback: {
+          created: t('admin.products.feedback.created'),
+          updated: t('admin.products.feedback.updated'),
+          deleted: t('admin.products.feedback.deleted')
+        },
+        form: {
+          name: t('admin.products.form.name'),
+          slug: t('admin.products.form.slug'),
+          description: t('admin.products.form.description'),
+          price: t('admin.products.form.price'),
+          stock: t('admin.products.form.stock'),
+          category: t('admin.products.form.category'),
+          image: t('admin.products.form.image'),
+          isFeatured: t('admin.products.form.isFeatured'),
+          submitCreate: t('admin.products.form.submitCreate'),
+          submitUpdate: t('admin.products.form.submitUpdate')
+        },
+        table: {
+          name: t('admin.products.table.name'),
+          price: t('admin.products.table.price'),
+          stock: t('admin.products.table.stock'),
+          updated: t('admin.products.table.updated'),
+          actions: t('admin.products.table.actions')
+        }
+      }}
+    />
+  </AdminLayout>
+</Layout>
