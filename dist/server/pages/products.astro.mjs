@@ -1,8 +1,8 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_DphMVhZR.mjs';
-import { $ as $$ProductCard } from '../chunks/ProductCard_VQUZtOac.mjs';
+import { $ as $$ProductCard } from '../chunks/ProductCard_Bzh-yx9c.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import React from 'react';
-import { c as createTranslator, $ as $$Layout } from '../chunks/Layout_CW4dC78d.mjs';
+import { c as createTranslator, $ as $$Layout } from '../chunks/Layout_CX9V-NAS.mjs';
 import { l as listProducts } from '../chunks/cart_ChTR_Zc6.mjs';
 export { renderers } from '../renderers.mjs';
 
@@ -204,10 +204,10 @@ Filters
     countLabel: "Showing {{count}} products"
   }, "onFiltersChange": ((filters) => {
     console.log("Filters changed:", filters);
-  }), "client:component-hydration": "idle", "client:component-path": "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/components/storefront/ProductFilters", "client:component-export": "ProductFilters" })} </div> </div> <!-- Products Grid --> <div class="lg:col-span-3"> <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"> ${products.map((product) => renderTemplate`${renderComponent($$result2, "ProductCard", $$ProductCard, { "product": product, "t": t, "locale": locale })}`)} </div> ${products.length === 0 && renderTemplate`<div class="text-center py-20"> <p class="text-lg text-[#2B2B2B]/70">No products found matching your filters.</p> </div>`} </div> </div> </div> </section> ` })}`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/products.astro", void 0);
+  }), "client:component-hydration": "idle", "client:component-path": "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/components/storefront/ProductFilters", "client:component-export": "ProductFilters" })} </div> </div> <!-- Products Grid --> <div class="lg:col-span-3"> <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"> ${products.map((product) => renderTemplate`${renderComponent($$result2, "ProductCard", $$ProductCard, { "product": product, "t": t, "locale": locale })}`)} </div> ${products.length === 0 && renderTemplate`<div class="text-center py-20"> <p class="text-lg text-[#2B2B2B]/70">No products found matching your filters.</p> </div>`} </div> </div> </div> </section> ` })}`;
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/products.astro", void 0);
 
-const $$file = "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/products.astro";
+const $$file = "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/products.astro";
 const $$url = "/products";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

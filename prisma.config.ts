@@ -1,18 +1,11 @@
-import { defineConfig } from "prisma/config";
-import dotenv from "dotenv";
+import path from "node:path";
+import type { PrismaConfig } from "prisma";
+import 'dotenv/config';
 
-// .env dosyasını yükle
-dotenv.config();
-
-const databaseUrl = process.env.DATABASE_URL ?? "file:../dev.db";
-
-export default defineConfig({
-  schema: "prisma/schema.prisma",
+export default {
+  schema: path.join("prisma", "schema.prisma"),
   migrations: {
-    path: "prisma/migrations",
-  },
-  engine: "classic",
-  datasource: {
-    url: databaseUrl,
-  },
-});
+    path: path.join("prisma", "migrations"),
+    seed: `tsx prisma/seed.ts`,
+  }
+} satisfies PrismaConfig;

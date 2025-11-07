@@ -1,14 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3'
+import { PrismaClient } from '../../generated/prisma/client';
+import {config} from 'dotenv'
 
-declare global {
-  // eslint-disable-next-line no-var
-  var prisma: PrismaClient | undefined;
-}
+config();
 
-const prismaClient = globalThis.prisma ?? new PrismaClient();
-
-if (import.meta.env.DEV) {
-  globalThis.prisma = prismaClient;
-}
-
-export const prisma = prismaClient;
+const adapter = new PrismaBetterSQLite3({
+  url: process.env.DATABASE_URL ?? 'file:dev.db'
+});
+export const prisma = new PrismaClient({ adapter });

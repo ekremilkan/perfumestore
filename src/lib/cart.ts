@@ -1,5 +1,5 @@
 import type { APIContext, AstroCookies } from 'astro';
-import type { Product } from '@prisma/client';
+import type { Product } from '@db/prisma/client';
 
 import { getProductById } from './services/products';
 

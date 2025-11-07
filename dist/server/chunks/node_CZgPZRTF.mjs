@@ -1225,7 +1225,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_CGssB-4I.mjs'
+      './sharp_lPsUxmL3.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1407,7 +1407,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/node_modules/astro/components/Image.astro", void 0);
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/node_modules/astro/components/Image.astro", void 0);
 
 const $$Astro$1 = createAstro("http://localhost:4321");
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
@@ -1478,7 +1478,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(mime.lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/node_modules/astro/components/Picture.astro", void 0);
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/node_modules/astro/components/Picture.astro", void 0);
 
 const fontsMod = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null
@@ -1537,7 +1537,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   }
   const filteredPreloadData = filterPreloads(data.preloadData, preload);
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${filteredPreloadData?.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/node_modules/astro/components/Font.astro", void 0);
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/node_modules/astro/components/Font.astro", void 0);
 
 const assetQueryParams = undefined;
 							const imageConfig = {"endpoint":{"route":"/_image","entrypoint":"astro/assets/endpoint/node"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[],"responsiveStyles":false};
@@ -1552,7 +1552,7 @@ const assetQueryParams = undefined;
 							// in the Lambda bundle, which would bloat the bundle with images.
 							// To prevent this, we mark the URL construction as pure,
 							// so that it's tree-shaken away for all platforms that don't need it.
-							const outDir = /* #__PURE__ */ new URL("file:///Users/ekremilkan/Desktop/projects/ecommerce-astro/dist/client/");
+							const outDir = /* #__PURE__ */ new URL("file:///Users/darah.k/Downloads/projectsDubai/perfumestore/dist/client/");
 							const getImage = async (options) => await getImage$1(options, imageConfig);
 
 const fnv1a52 = (str) => {

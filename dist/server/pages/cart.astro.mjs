@@ -1,7 +1,7 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_DphMVhZR.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useMemo } from 'react';
-import { c as createTranslator, $ as $$Layout } from '../chunks/Layout_CW4dC78d.mjs';
+import { c as createTranslator, $ as $$Layout } from '../chunks/Layout_CX9V-NAS.mjs';
 import { g as getCartContext } from '../chunks/cart_ChTR_Zc6.mjs';
 export { renderers } from '../renderers.mjs';
 
@@ -361,10 +361,10 @@ const $$Cart = createComponent(async ($$result, $$props, $$slots) => {
     checkout: t("cart.checkout"),
     continue: t("cart.continue"),
     itemLabel: t("cart.items")
-  }, "client:component-hydration": "load", "client:component-path": "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/components/storefront/CartTable.tsx", "client:component-export": "CartTable" })} </section> ` })}`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/cart.astro", void 0);
+  }, "client:component-hydration": "load", "client:component-path": "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/components/storefront/CartTable.tsx", "client:component-export": "CartTable" })} </section> ` })}`;
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/cart.astro", void 0);
 
-const $$file = "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/cart.astro";
+const $$file = "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/cart.astro";
 const $$url = "/cart";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

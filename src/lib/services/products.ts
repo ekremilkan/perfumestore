@@ -1,7 +1,7 @@
-import type { Product } from '@prisma/client';
+import type { Product } from '@db/prisma/client';
 
-import { prisma } from '../prisma';
-import { getTenantId } from '../business';
+import { prisma } from '@/lib/prisma';
+import { getTenantId } from '@/lib/business';
 
 export async function listProducts() {
   const tenantId = await getTenantId();

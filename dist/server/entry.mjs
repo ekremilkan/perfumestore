@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_CGVQeYVU.mjs';
-import { manifest } from './manifest_B4AsxOXX.mjs';
+import { manifest } from './manifest_bXscAvNY.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -50,8 +50,8 @@ const _manifest = Object.assign(manifest, {
 });
 const _args = {
     "mode": "standalone",
-    "client": "file:///Users/ekremilkan/Desktop/projects/ecommerce-astro/dist/client/",
-    "server": "file:///Users/ekremilkan/Desktop/projects/ecommerce-astro/dist/server/",
+    "client": "file:///Users/darah.k/Downloads/projectsDubai/perfumestore/dist/client/",
+    "server": "file:///Users/darah.k/Downloads/projectsDubai/perfumestore/dist/server/",
     "host": false,
     "port": 4321,
     "assets": "_astro",

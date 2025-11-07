@@ -1,5 +1,5 @@
 import { e as createAstro, f as createComponent, r as renderTemplate, k as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_DphMVhZR.mjs';
-import { c as createTranslator, $ as $$Layout } from '../chunks/Layout_CW4dC78d.mjs';
+import { c as createTranslator, $ as $$Layout } from '../chunks/Layout_CX9V-NAS.mjs';
 import { a as getBusinessConfig } from '../chunks/business_eBF7zugw.mjs';
 /* empty css                                    */
 export { renderers } from '../renderers.mjs';
@@ -210,9 +210,9 @@ Place Order
 </button> <p class="text-xs text-center text-[color-mix(in srgb,var(--color-secondary) 60%,white 40%)] mt-4" data-astro-cid-ojox7d5b>
 Your payment information is secure and encrypted
 </p> </div> </div> </form> </div> </div> ` }));
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/checkout.astro", void 0);
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/checkout.astro", void 0);
 
-const $$file = "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/checkout.astro";
+const $$file = "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/checkout.astro";
 const $$url = "/checkout";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

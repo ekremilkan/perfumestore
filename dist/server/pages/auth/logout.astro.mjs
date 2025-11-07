@@ -1,5 +1,5 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, h as addAttribute, m as maybeRenderHead } from '../../chunks/astro/server_DphMVhZR.mjs';
-import { c as createTranslator, $ as $$Layout } from '../../chunks/Layout_CW4dC78d.mjs';
+import { c as createTranslator, $ as $$Layout } from '../../chunks/Layout_CX9V-NAS.mjs';
 export { renderers } from '../../renderers.mjs';
 
 var __freeze = Object.freeze;
@@ -25,9 +25,9 @@ const $$Logout = createComponent(($$result, $$props, $$slots) => {
           window.location.href = redirectTarget;
         });
     <\/script> </section> `])), maybeRenderHead(), addAttribute(redirectTo, "data-redirect-to"), t("auth.subtitle")) })}`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/auth/logout.astro", void 0);
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/auth/logout.astro", void 0);
 
-const $$file = "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/auth/logout.astro";
+const $$file = "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/auth/logout.astro";
 const $$url = "/auth/logout";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

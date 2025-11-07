@@ -4,7 +4,7 @@ import { emailOTP } from 'better-auth/plugins/email-otp';
 import { google } from 'better-auth/social-providers';
 import { env as processEnv } from 'node:process';
 
-import { prisma } from './prisma';
+import { prisma } from '@/lib/prisma';
 
 const appName = processEnv.BUSINESS_NAME ?? 'PerfumeStore';
 const baseURL =

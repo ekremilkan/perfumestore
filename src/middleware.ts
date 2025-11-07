@@ -1,5 +1,3 @@
-/// <reference path="../env.d.ts" />
-
 import type { MiddlewareHandler } from 'astro';
 import { env as processEnv } from 'node:process';
 

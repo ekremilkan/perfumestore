@@ -1,7 +1,7 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_DphMVhZR.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState } from 'react';
-import { c as createTranslator, $ as $$Layout } from '../../chunks/Layout_CW4dC78d.mjs';
+import { c as createTranslator, $ as $$Layout } from '../../chunks/Layout_CX9V-NAS.mjs';
 export { renderers } from '../../renderers.mjs';
 
 function OtpLogin({ texts, redirectTo }) {
@@ -113,10 +113,10 @@ const $$Login = createComponent(($$result, $$props, $$slots) => {
     verifyOtp: t("auth.verifyOtp"),
     success: t("auth.success"),
     error: t("auth.error")
-  }, "client:component-hydration": "load", "client:component-path": "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/components/auth/OtpLogin.tsx", "client:component-export": "OtpLogin" })} </div> <div class="text-center"> <a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[color:var(--color-secondary)] px-5 py-2 text-sm font-semibold text-[var(--color-secondary)] transition hover:bg-[var(--color-secondary)] hover:text-white" href="/api/auth/sign-in/google?redirectTo=/admin"> ${t("auth.google")} </a> </div> </section> ` })}`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/auth/login.astro", void 0);
+  }, "client:component-hydration": "load", "client:component-path": "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/components/auth/OtpLogin.tsx", "client:component-export": "OtpLogin" })} </div> <div class="text-center"> <a class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[color:var(--color-secondary)] px-5 py-2 text-sm font-semibold text-[var(--color-secondary)] transition hover:bg-[var(--color-secondary)] hover:text-white" href="/api/auth/sign-in/google?redirectTo=/admin"> ${t("auth.google")} </a> </div> </section> ` })}`;
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/auth/login.astro", void 0);
 
-const $$file = "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/auth/login.astro";
+const $$file = "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/auth/login.astro";
 const $$url = "/auth/login";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

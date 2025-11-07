@@ -1,0 +1,15 @@
+
+> ecommerce-astro@0.0.1 dev
+> astro dev
+
+05:37:59 [@astrojs/node] Enabling sessions with filesystem storage
+05:37:59 [types] Generated 0ms
+05:37:59 [content] Syncing content
+05:37:59 [content] Synced content
+
+ astro  v5.15.3 ready in 155 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+05:37:59 watching for file changes...

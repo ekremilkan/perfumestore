@@ -1,8 +1,8 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate } from '../../chunks/astro/server_DphMVhZR.mjs';
-import { $ as $$AdminLayout } from '../../chunks/AdminLayout_-m8ErelV.mjs';
+import { $ as $$AdminLayout } from '../../chunks/AdminLayout_DSnMBYk_.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState, useMemo } from 'react';
-import { c as createTranslator, $ as $$Layout } from '../../chunks/Layout_CW4dC78d.mjs';
+import { c as createTranslator, $ as $$Layout } from '../../chunks/Layout_CX9V-NAS.mjs';
 import { p as prisma } from '../../chunks/prisma_BXVFITCM.mjs';
 import { g as getTenantId } from '../../chunks/business_eBF7zugw.mjs';
 export { renderers } from '../../renderers.mjs';
@@ -199,10 +199,10 @@ const $$Orders = createComponent(async ($$result, $$props, $$slots) => {
       markCompleted: t("admin.orders.actions.markCompleted"),
       cancel: t("admin.orders.actions.cancel")
     }
-  }, "client:component-hydration": "load", "client:component-path": "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/components/admin/OrdersManager.tsx", "client:component-export": "OrdersManager" })} ` })} ` })}`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/admin/orders.astro", void 0);
+  }, "client:component-hydration": "load", "client:component-path": "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/components/admin/OrdersManager.tsx", "client:component-export": "OrdersManager" })} ` })} ` })}`;
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/admin/orders.astro", void 0);
 
-const $$file = "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/pages/admin/orders.astro";
+const $$file = "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/pages/admin/orders.astro";
 const $$url = "/admin/orders";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

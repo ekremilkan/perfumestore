@@ -91,7 +91,7 @@ const $$ProductCard = createComponent(($$result, $$props, $$slots) => {
     loading: t("products.adding"),
     success: t("products.added"),
     error: t("notifications.cartError")
-  }, "className": "w-12 h-12 bg-[#3A4B2E] text-white rounded-full flex items-center justify-center hover:bg-[#3A4B2E]/90 transition-colors", "client:component-hydration": "idle", "client:component-path": "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/components/storefront/AddToCartButton.tsx", "client:component-export": "AddToCartButton" })} </div> </div> </a>`;
-}, "/Users/ekremilkan/Desktop/projects/ecommerce-astro/src/components/storefront/ProductCard.astro", void 0);
+  }, "className": "w-12 h-12 bg-[#3A4B2E] text-white rounded-full flex items-center justify-center hover:bg-[#3A4B2E]/90 transition-colors", "client:component-hydration": "idle", "client:component-path": "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/components/storefront/AddToCartButton.tsx", "client:component-export": "AddToCartButton" })} </div> </div> </a>`;
+}, "/Users/darah.k/Downloads/projectsDubai/perfumestore/src/components/storefront/ProductCard.astro", void 0);
 
 export { $$ProductCard as $, AddToCartButton as A };
